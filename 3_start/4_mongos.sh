@@ -1,0 +1,1 @@
+mongos --config /etc/mongos.conf --fork
