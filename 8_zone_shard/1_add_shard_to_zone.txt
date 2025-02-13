@@ -1,0 +1,4 @@
+mongosh --port 27000
+sh.addShardToZone("shard_A", "SG")
+sh.addShardToZone("shard_B", "NonSG")
+

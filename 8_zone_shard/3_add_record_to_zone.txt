@@ -1,0 +1,32 @@
+mongosh --port 27000
+use apps
+db.kantor.createIndex({"region": 1, "name": 1})
+sh.shardCollection("apps.kantor", {"region": 1, "name": 1}) 
+
+sh.addTagRange( 
+  "apps.kantor",
+  { "region" : "SG" , "name" : MinKey }, 
+   { "region" : "SG"  , "name" : MaxKey  }, 
+  "SG"
+)
+
+sh.addTagRange( 
+  "apps.kantor",
+  { "region" : "NonSG" , "name" : MinKey }, 
+   { "region" : "NonSG"  , "name" : MaxKey  }, 
+  "NonSG"
+)
+
+db.kantor.insertOne( { "name": "co1", "region": "SG" } )
+db.kantor.insertOne( { "name": "co3", "region": "SG" } )
+db.kantor.insertOne( { "name": "co4", "region": "SG" } )
+db.kantor.insertOne( { "name": "co5", "region": "SG" } )
+db.kantor.insertOne( { "name": "co6", "region": "SG" } )
+
+db.kantor.insertOne( { "name": "co2", "region": "NonSG" } )
+db.kantor.insertOne( { "name": "co7", "region": "NonSG" } )
+
+db.kantor.insertOne( { "name": "co8", "region": "NonSG11" } )
+
+
+db.kantor.getShardDistribution()

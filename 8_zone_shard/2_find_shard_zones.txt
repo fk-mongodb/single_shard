@@ -1,0 +1,4 @@
+mongosh --port 27000
+use config
+db.shards.find({ tags: "NonSG" })
+db.shards.find({ tags: "SG" })
