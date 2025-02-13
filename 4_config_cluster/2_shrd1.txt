@@ -1,0 +1,2 @@
+mongosh --port 27002
+rs.initiate()

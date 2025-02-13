@@ -1,0 +1,3 @@
+mongosh --port 27000
+sh.addShard( "shard_A/localhost:27002" )
+sh.addShard( "shard_B/localhost:27003" )
