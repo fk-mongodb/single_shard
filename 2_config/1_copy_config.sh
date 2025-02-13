@@ -1,0 +1,1 @@
+cp 2_config/*conf /etc/
